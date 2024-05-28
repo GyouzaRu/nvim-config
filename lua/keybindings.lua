@@ -50,6 +50,7 @@ map("n", "<C-Right>", "<Cmd>vertical resize +5<CR>", opt)
 map("n", "<C-Down>", "<Cmd>resize +5<CR>", opt)
 map("n", "<C-Up>", "<Cmd>resize -5<CR>", opt)
 -- tab 切换与创建
+map("n", "<leader>t", "<Cmd>tabe split<CR>", opt)
 -- map("n", "tb", "<Cmd>tabe<CR>", opt)
 -- map("n", "tc", "<Cmd>tabc<CR>", opt) -- 使用插件vim--bbye
 -- if packer_plugins["bufferline.nvim"] and packer_plugins["bufferline.nvim"].loaded then
@@ -220,11 +221,9 @@ map("n", "]q", "<Cmd>cnext<CR>", opt)
 -- }
 
 -- Mini Files
-pluginKeys.minifiles = {
-  functionKeys = function ()
+pluginKeys.minifiles = function ()
     map('n', '<leader>n', '<Cmd>lua MiniFiles.open()<CR>',opt)
-  end
-}
+end
 
 -- Float terminal
 -- pluginKeys.FTerm = {

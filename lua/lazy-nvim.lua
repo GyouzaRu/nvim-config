@@ -150,6 +150,21 @@ lazy.setup({
     -- cmd = "TSUpdate"
   },
 
+  -- code outline
+  {
+    'stevearc/aerial.nvim',
+    event = { 'BufNewFile', 'BufReadPre' },
+    config = function()
+      require("plugin-config.aerial")
+    end,
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+  },
+
   -- surround
   {
     "kylechui/nvim-surround",

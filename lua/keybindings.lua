@@ -50,7 +50,6 @@ map("n", "<C-Right>", "<Cmd>vertical resize +5<CR>", opt)
 map("n", "<C-Down>", "<Cmd>resize +5<CR>", opt)
 map("n", "<C-Up>", "<Cmd>resize -5<CR>", opt)
 -- tab 切换与创建
-map("n", "<leader>t", "<Cmd>tabe split<CR>", opt)
 -- map("n", "tb", "<Cmd>tabe<CR>", opt)
 -- map("n", "tc", "<Cmd>tabc<CR>", opt) -- 使用插件vim--bbye
 -- if packer_plugins["bufferline.nvim"] and packer_plugins["bufferline.nvim"].loaded then
@@ -275,12 +274,16 @@ pluginKeys.gitsigns = function(bufnr)
   -- gitsign_map({'o', 'x'}, 'ih', '<Cmd><C-U>Gitsigns select_hunk<CR>')
 end
 
--- SymbolsOutline
--- pluginKeys.SymbolsOutline = {
---   functionKeys = function()
---     map("n", "<leader>t", "<cmd>SymbolsOutline<CR>", opt)
---   end
--- }
+-- Code outline
+pluginKeys.aerial =  {
+  functionKeys_onattach = function (bufnr)
+    map("n", "{", "<Cmd>AerialPrev<CR>", {buffer = bufnr})
+    map("n", "}", "<Cmd>AerialNext<CR>", {buffer = bufnr})
+  end,
+  functionKeys = function()
+    map("n", "<leader>t", "<Cmd>AerialToggle<CR>", opt)
+  end
+}
 
 -- Debugger
 pluginKeys.dap = {

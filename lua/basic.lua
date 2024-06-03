@@ -84,9 +84,17 @@ vim.opt.switchbuf = "usetab"
 if vim.fn.executable('rg') == 1 then
   vim.opt.grepprg = "rg --vimgrep --smart-case --follow"
 end
--- clipboard
-if vim.fn.has('WSL') ~= 1 then
-  vim.opt.clipboard = "unnamedplus"
-end
+-- clipboard use OSC 52
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
 -- switchbuf
 -- vim.opt.switchbuf = {"usetab", "newtab"}

@@ -239,15 +239,15 @@ lazy.setup({
   --   end,
   -- },
   -- message UI
-  {"folke/noice.nvim",
-      event = 'VeryLazy',
-      config = function()
-          require("plugin-config.noice")
-      end,
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-        "rcarriga/nvim-notify"
-  }},
+  -- {"folke/noice.nvim",
+  --     event = 'VeryLazy',
+  --     config = function()
+  --         require("plugin-config.noice")
+  --     end,
+  --     dependencies = {
+  --       "MunifTanjim/nui.nvim",
+  --       -- "rcarriga/nvim-notify"
+  -- }},
 
   -- Lspconfig
   {
@@ -339,20 +339,15 @@ lazy.setup({
   -- Dap
   {
     "mfussenegger/nvim-dap",
+    cmd = { "DapToggleBreakpoint", "DapContinue"},
     config = function()
-      require("dap.setup")
+      require("DAP.setup")
     end,
-    -- dependencies = {
-    --   "rcarriga/nvim-dap-ui",
-    --   "theHamsta/nvim-dap-virtual-text",
-    -- },
     enabled = Unload_in_windows,
   },
   {
     "rcarriga/nvim-dap-ui",
-    config = function()
-      require("dap.ui")
-    end,
+    lazy = true,
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio"
@@ -361,9 +356,7 @@ lazy.setup({
   },
   {
     "theHamsta/nvim-dap-virtual-text",
-    config = function()
-      require("dap.virtual-text")
-    end,
+    lazy = true,
     dependencies = {
       "mfussenegger/nvim-dap",
     },

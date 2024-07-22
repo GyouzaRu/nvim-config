@@ -185,13 +185,13 @@ lazy.setup({
   },
 
   -- comment
-  -- {
-  --   "numToStr/Comment.nvim",
-  --   event = { 'BufNewFile', 'BufReadPre' },
-  --   config = function()
-  --     require("plugin-config.comment")
-  --   end,
-  -- },
+  {
+    "numToStr/Comment.nvim",
+    event = { 'BufNewFile', 'BufReadPre' },
+    config = function()
+      require("plugin-config.comment")
+    end,
+  },
   -- Float terminal
   -- {
   --   "numToStr/FTerm.nvim",
@@ -227,6 +227,14 @@ lazy.setup({
     event = { 'BufNewFile', 'BufReadPre' },
     config = function()
       require("plugin-config.indent-blankline")
+    end,
+  },
+
+  {
+    "skywind3000/asyncrun.vim",
+    event = { 'BufNewFile', 'BufReadPre' },
+    config = function()
+      require("plugin-config.async")
     end,
   },
 

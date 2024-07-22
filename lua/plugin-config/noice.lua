@@ -62,7 +62,7 @@ noice.setup({
 local status_notify, notify = pcall(require, "notify")
 if not status_notify then
   vim.notify("没有找到 notify")
-  -- return
+  return
 end
 
 notify.setup {

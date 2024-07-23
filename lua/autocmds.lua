@@ -45,13 +45,6 @@ api.nvim_create_autocmd(
   end}
 )
 
-api.nvim_create_autocmd(
-  { "BufNewFile", "BufRead" },
-  { pattern = { "*.c,*.cpp,*.cc,*.h,*.hpp" }, callback = function ()
-    vim.bo.equalprg = "clang-format"
-  end}
-)
-
 -- save and load fold
 api.nvim_create_autocmd(
   { "BufWinLeave" },

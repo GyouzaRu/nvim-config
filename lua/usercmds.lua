@@ -29,7 +29,11 @@ vim.api.nvim_create_user_command(
       vim.cmd.startinsert()
       -- the term is not exist yet
     else
-      vim.cmd("$tabnew term://zsh")
+      local shell = 'bash';
+      if vim.fn.executable('zsh') == 1 then
+        shell = 'zsh'
+      end
+      vim.cmd("$tabnew term://" .. shell)
       term_buf_id = vim.api.nvim_get_current_buf()
       vim.opt_local.relativenumber = false
       -- vim.opt_local.number = false
@@ -61,32 +65,129 @@ vim.api.nvim_create_user_command(
   end,
   {}
 )
-
-
--- api.nvim_create_user_command('Cmake', function (args)
---   require('usercmds').run(args)
--- end, {nargs =1, desc = "cmake command" })
+-- -- 定义一个函数来异步执行 CMake 命令，并将输出解析到 quickfix 列表中
+-- local function run_async_task(args)
+--   -- 将命令行参数转换为表
+--   local task = {}
+--   for _, arg in ipairs(args.fargs) do
+--     table.insert(task, arg)
+--   end
+--   -- 打开 quickfix 窗口
+--   vim.cmd('copen')
 --
--- local custom_cmake = {}
---
--- function custom_cmake.run(args)
---     local build_dir = "build"
---     if args == "clean" or args == "c" or args == "C" then
---       if vim.fn.isdirectory(build_dir) == 0 then
---         print("-- Folder build is not exist")
+--   -- 启动一个异步任务
+--   local async_job = vim.fn.jobstart(task, {
+--     stdout_buffered = true,
+--     stderr_buffered = true,
+--     on_stdout = function(_, data, _)
+--       -- 将标准输出的数据添加到 quickfix 列表
+--       vim.fn.setqflist({}, 'a', {
+--         title = 'Async Task',
+--         lines = data,
+--       })
+--     end,
+--     on_stderr = function(_, data, _)
+--       -- 将标准错误的数据添加到 quickfix 列表
+--       vim.fn.setqflist({}, 'a', {
+--         title = 'Async Task Errors',
+--         lines = data,
+--       })
+--       -- 打开 quickfix 窗口
+--       -- vim.cmd('copen')
+--     end,
+--     on_exit = function(_, exit_code, _)
+--       -- 处理任务退出时的操作
+--       if exit_code ~= 0 then
+--         print('Async task failed with exit code ' .. exit_code)
 --       else
---         vim.cmd("!rm -rf build/*")
+--         print('Async task succeeded')
 --       end
---       return
---     end
+--     end,
+--   })
 --
---     if args == "run" or args == "r" or args == "R" then
---       if vim.fn.isdirectory(build_dir) == 0 then
---         print("-- Folder build is not exist")
---         vim.fn.mkdir("build","p")
---       end
---       vim.cmd("!cmake -B build")
---     end
+--   if async_job <= 0 then
+--     print('Failed to start async job')
+--   end
 -- end
 --
--- return custom_cmake
+-- -- 创建一个 :Async 命令来调用上面的函数
+-- vim.api.nvim_create_user_command('Async', run_async_task, { nargs = '*' })
+--
+-- -- 定义一个函数来异步执行 CMake 命令
+-- local function run_cmake(args)
+--   -- 将命令行参数转换为表
+--   local cmake_args = {'cmake', '-B', 'build'}
+--   for _, arg in ipairs(args.fargs) do
+--     table.insert(cmake_args, arg)
+--   end
+--   table.insert(cmake_args, '-DCMAKE_EXPORT_COMPILE_COMMANDS=1')
+--     vim.cmd('copen')
+--
+--   -- 启动第一个异步任务来执行 cmake -B build
+--   local build_job = vim.fn.jobstart(cmake_args, {
+--     stdout_buffered = true,
+--     stderr_buffered = true,
+--     on_stdout = function(_, data, _)
+--       -- 将标准输出的数据添加到 quickfix 列表
+--       vim.fn.setqflist({}, 'a', {
+--         title = 'CMake Configure',
+--         lines = data,
+--       })
+--     end,
+--     on_stderr = function(_, data, _)
+--       -- 将标准错误的数据添加到 quickfix 列表
+--       vim.fn.setqflist({}, 'a', {
+--         title = 'CMake Configure Errors',
+--         lines = data,
+--       })
+--     end,
+--     on_exit = function(_, exit_code, _)
+--       -- 处理任务退出时的操作
+--       if exit_code ~= 0 then
+--         print('CMake configure failed with exit code ' .. exit_code)
+--       else
+--         print('CMake configure succeeded')
+--         -- 启动第二个异步任务来执行 cmake --build build
+--         local build_args = {'cmake', '--build', 'build'}
+--         local build_compile_job = vim.fn.jobstart(build_args, {
+--           stdout_buffered = true,
+--           stderr_buffered = true,
+--           on_stdout = function(_, data, _)
+--             -- 将标准输出的数据添加到 quickfix 列表
+--             vim.fn.setqflist({}, 'a', {
+--               title = 'Make Build',
+--               lines = data,
+--             })
+--           end,
+--           on_stderr = function(_, data, _)
+--             -- 将标准错误的数据添加到 quickfix 列表
+--             vim.fn.setqflist({}, 'a', {
+--               title = 'Make Build Errors',
+--               lines = data,
+--             })
+--           end,
+--           on_exit = function(_, build_exit_code, _)
+--             -- 处理任务退出时的操作
+--             if build_exit_code ~= 0 then
+--               print('Make build failed with exit code ' .. build_exit_code)
+--             else
+--               print('Make build succeeded')
+--             end
+--             vim.cmd('copen')
+--           end,
+--         })
+--
+--         if build_compile_job <= 0 then
+--           print('Failed to start CMake build job')
+--         end
+--       end
+--     end,
+--   })
+--
+--   if build_job <= 0 then
+--     print('Failed to start CMake configure job')
+--   end
+-- end
+--
+-- -- 创建一个 :Cmake 命令来调用上面的函数
+-- vim.api.nvim_create_user_command('Cmake', run_cmake, { nargs = '*' })

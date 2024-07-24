@@ -31,7 +31,7 @@ map("n", "<leader>j", "J", opt)
 map("n", "<leader><CR>", "<Cmd>nohl<CR>", opt)
 -- win 分屏快捷键
 map("n", "<leader>-", "<C-w>s", opt)
-map("n", "<leader>=", "<C-w>v", opt)
+map("n", "<leader>\\", "<C-w>v", opt)
 map("n", "<leader><BS>", "<C-w>c", opt)
 -- 关闭当前
 -- map("n", "<leader>c", "<C-w>c", opt)
@@ -288,6 +288,7 @@ pluginKeys.aerial =  {
 -- Debugger
 pluginKeys.dap = {
   functionKeys = function()
+    map({ "i", "n", "v" }, "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opt)
     map({ "i", "n", "v" }, "<F5>", "<cmd>lua require'dap'.continue()<CR>", opt)
     map({ "i", "n", "v" }, "<F10>", "<cmd>lua require'dap'.step_over()<CR>", opt)
     map({ "i", "n", "v" }, "<F11>", "<cmd>lua require'dap'.step_into()<CR>", opt)
@@ -307,6 +308,9 @@ pluginKeys.telescope = {
     map("n", "<leader>o", builtin.oldfiles, opt)
     -- map("n", "sh", "<Cmd>Telescope help_tags<CR>", opt)
     -- map("n", "st", "<Cmd>Telescope tags<CR>", opt)
+    map("n", "<leader>q", builtin.quickfixhistory, opt)
+    -- map("n", "<leader>/", builtin.search_history, opt)
+    -- map("n", "<leader>:", builtin.command_history, opt)
     -- project插件
     map("n", "<leader>p", "<cmd>Telescope projects<CR>", opt)
   end,
@@ -346,7 +350,7 @@ pluginKeys.mapLSP = function(mapbuf)
   mapbuf("n", "gp", vim.diagnostic.open_float, opt)
   mapbuf("n", "[d", vim.diagnostic.goto_prev, opt)
   mapbuf("n", "]d", vim.diagnostic.goto_next, opt)
-  mapbuf("n", "<leader><leader>=", vim.lsp.buf.format, opt)
+  mapbuf("n", "<leader>=", vim.lsp.buf.format, opt)
   mapbuf("n", "<leader>a", vim.lsp.buf.code_action, opt)
 end
 

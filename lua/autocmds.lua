@@ -45,6 +45,22 @@ api.nvim_create_autocmd(
   end}
 )
 
+-- Terminal
+api.nvim_create_autocmd(
+  { "TermEnter", "TermOpen"},
+  {callback = function ()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+  end}
+)
+
+api.nvim_create_autocmd(
+  { "TermLeave"},
+  {callback = function ()
+    vim.opt_local.number = true
+  end}
+)
+
 -- save and load fold
 api.nvim_create_autocmd(
   { "BufWinLeave" },

@@ -35,8 +35,6 @@ vim.api.nvim_create_user_command(
       end
       vim.cmd("$tabnew term://" .. shell)
       term_buf_id = vim.api.nvim_get_current_buf()
-      vim.opt_local.relativenumber = false
-      -- vim.opt_local.number = false
       vim.cmd.startinsert()
     end
 

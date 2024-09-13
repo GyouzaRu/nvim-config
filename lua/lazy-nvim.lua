@@ -334,6 +334,14 @@ lazy.setup({
     },
   },
 
+  -- fitten code
+  {
+  'luozhiya/fittencode.nvim',
+  config = function()
+    require('plugin-config.fitten-code')
+  end,
+  },
+
   -- Debugger
 
   -- {"sakhnik/nvim-gdb",

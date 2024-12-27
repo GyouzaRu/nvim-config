@@ -19,15 +19,24 @@ local function display_recording_with_noice()
   end
 end
 
+local function git_component()
+  local M = {}
+    if vim.fn.executable("git") == 1 then
+      M = {"branch", "diff"}
+    end
+  return M
+end
+
 lualine.setup({
   options = {
     theme = "auto",
-    component_separators = { left = "|", right = "|" },
+    -- component_separators = { left = "|", right = "|" },
     -- https://github.com/ryanoasis/powerline-extra-symbols
-    section_separators = { left = " ", right = "" },
+    -- section_separators = { left = "", right = "" },
   },
   extensions = { "nvim-tree", "toggleterm" },
   sections = {
+    lualine_b = git_component(),
     lualine_c = {
       display_recording_with_noice(),
       "filename",

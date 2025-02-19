@@ -4,7 +4,7 @@ if not status then
   return
 end
 
-local keybindings = require('keybindings').aerial
+local keybindings = require('config.keybindings').aerial
 
 aerial.setup({
   -- Priority list of preferred backends for aerial.

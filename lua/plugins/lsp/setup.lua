@@ -9,17 +9,17 @@ end
 -- key 必须为下列网址列出的 server name，不可以随便写
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
 local servers = {
-  clangd = require("lsp.config.clangd"),
-  cmake = require("lsp.config.cmake"),
-  lua_ls = require("lsp.config.lua"),
-  rust_analyzer = require("lsp.config.rust");
-  -- bashls = require("lsp.config.bash"),
-  dockerls = require("lsp.config.docker"),
-  pyright = require("lsp.config.pyright"),
-  jsonls = require("lsp.config.json"),
-  yamlls = require("lsp.config.yamlls"),
-  -- jdtls = require("lsp.config.jdtls"),
-  -- remark_ls = require("lsp.config.markdown"),
+  clangd = require("plugins.lsp.config.clangd"),
+  cmake = require("plugins.lsp.config.cmake"),
+  lua_ls = require("plugins.lsp.config.lua"),
+  rust_analyzer = require("plugins.lsp.config.rust");
+  -- bashls = require("plugins.lsp.config.bash"),
+  dockerls = require("plugins.lsp.config.docker"),
+  pyright = require("plugins.lsp.config.pyright"),
+  jsonls = require("plugins.lsp.config.json"),
+  yamlls = require("plugins.lsp.config.yamlls"),
+  -- jdtls = require("plugins.lsp.config.jdtls"),
+  -- remark_ls = require("plugins.lsp.config.markdown"),
 }
 
 for name, config in pairs(servers) do
@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set(mode, keys, func, opts)
     end
     -- 绑定快捷键
-    require("keybindings").mapLSP(buf_set_keymap)
+    require("config.keybindings").mapLSP(buf_set_keymap)
 
   end,
 })

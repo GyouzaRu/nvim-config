@@ -6,5 +6,5 @@ end
 
 minifiles.setup({})
 
-require('keybindings').minifiles()
-require('autocmds').minifiles()
+require('config.keybindings').minifiles()
+require('config.autocmds').minifiles()

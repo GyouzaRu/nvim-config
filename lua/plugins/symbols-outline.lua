@@ -53,4 +53,4 @@ symbols.setup({
   },
 })
 
-require('keybindings').SymbolsOutline.functionKeys()
+require('config.keybindings').SymbolsOutline.functionKeys()

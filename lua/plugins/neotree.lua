@@ -93,7 +93,7 @@ neotree.setup({
       noremap = true,
       nowait = true,
     },
-    mappings = require('keybindings').neotreeList.default,
+    mappings = require('config.keybindings').neotreeList.default,
   },
 
   filesystem = {

@@ -32,7 +32,7 @@ nvim_tree.setup({
     -- 自定义列表中快捷键
     mappings = {
       custom_only = false,
-      list = require('keybindings').nvimTreeList,
+      list = require('config.keybindings').nvimTreeList,
     },
     -- 不显示行数
     number = true,

@@ -4,14 +4,14 @@ if not status then
   return
 end
 
-require('keybindings').dap.functionKeys();
+require('config.keybindings').dap.functionKeys();
 
 -- language setting
-require("DAP.config.cpp")
-require("DAP.config.python")
+require("plugins.dap.config.cpp")
+require("plugins.dap.config.python")
 
-local dapui = require('DAP.ui')
-require('DAP.virtual-text')
+local dapui = require('plugins.dap.ui')
+require('plugins.dap.virtual-text')
 
 dap.listeners.before.attach.dapui_config = function()
   dapui.open()

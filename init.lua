@@ -1,13 +1,13 @@
 -- basic
-require('basic')
+require('config.basic')
 -- keybindings
-require('keybindings')
+require('config.keybindings')
 -- custom commands
-require('autocmds')
-require('usercmds')
+require('config.autocmds')
+require('config.usercmds')
 
 -- lazy.nvim plugins management
-require('lazy-nvim')
+require('config.lazy-nvim')
 
 -- GUI support
-require('gui')
+require('config.gui')

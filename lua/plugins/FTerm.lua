@@ -26,4 +26,4 @@ term.setup({
 --     lazygit:toggle()
 -- end)
 
-require('keybindings').FTerm.functionKeys()
+require('config.keybindings').FTerm.functionKeys()

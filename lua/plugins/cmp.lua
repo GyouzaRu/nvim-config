@@ -38,7 +38,7 @@ cmp.setup({
   }, { { name = "buffer" }, { name = "path" } }),
 
   -- 快捷键设置
-  mapping = require("keybindings").cmp(cmp),
+  mapping = require("config.keybindings").cmp(cmp),
 })
 
 -- / 查找模式使用 buffer 源

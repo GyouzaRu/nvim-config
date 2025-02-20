@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -304,11 +304,11 @@ lazy.setup({
   },
 
   {
-    "nvimtools/none-ls.nvim",
+    "stevearc/conform.nvim",
     -- load cmp on InsertEnter
     event = { 'BufNewFile', 'BufReadPre' },
     config = function()
-      require("plugins.none-ls")
+      require("plugins.nvim-conform")
     end,
   },
 
@@ -353,10 +353,10 @@ lazy.setup({
 
   -- fitten code
   {
-  'luozhiya/fittencode.nvim',
-  config = function()
-    require('plugins.fitten-code')
-  end,
+    'luozhiya/fittencode.nvim',
+    config = function()
+      require('plugins.fitten-code')
+    end,
   },
 
   -- Debugger
@@ -372,7 +372,7 @@ lazy.setup({
   -- Dap
   {
     "mfussenegger/nvim-dap",
-    cmd = { "DapToggleBreakpoint", "DapContinue"},
+    cmd = { "DapToggleBreakpoint", "DapContinue" },
     config = function()
       require("plugins.dap.setup")
     end,

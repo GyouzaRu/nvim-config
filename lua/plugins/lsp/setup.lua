@@ -10,14 +10,15 @@ end
 -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
 local servers = {
   clangd = require("plugins.lsp.config.clangd"),
-  cmake = require("plugins.lsp.config.cmake"),
+  neocmake = require("plugins.lsp.config.cmake"),
   lua_ls = require("plugins.lsp.config.lua"),
-  rust_analyzer = require("plugins.lsp.config.rust");
-  -- bashls = require("plugins.lsp.config.bash"),
-  dockerls = require("plugins.lsp.config.docker"),
+  rust_analyzer = require("plugins.lsp.config.rust"),
   pyright = require("plugins.lsp.config.pyright"),
-  jsonls = require("plugins.lsp.config.json"),
-  yamlls = require("plugins.lsp.config.yamlls"),
+  marksman = require("plugins.lsp.config.markdown"),
+  -- bashls = require("plugins.lsp.config.bash"),
+  -- dockerls = require("plugins.lsp.config.docker"),
+  -- jsonls = require("plugins.lsp.config.json"),
+  -- yamlls = require("plugins.lsp.config.yamlls"),
   -- jdtls = require("plugins.lsp.config.jdtls"),
   -- remark_ls = require("plugins.lsp.config.markdown"),
 }
@@ -44,7 +45,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
     -- 绑定快捷键
     require("config.keybindings").mapLSP(buf_set_keymap)
-
   end,
 })
-

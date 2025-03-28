@@ -162,7 +162,7 @@ lazy.setup({
     config = function()
       require("plugins.nvim-treesitter")
     end,
-    tag = "v0.9.2",
+    -- tag = "v0.9.2",
     enabled = Unload_in_windows,
     -- cmd = "TSUpdate"
   },

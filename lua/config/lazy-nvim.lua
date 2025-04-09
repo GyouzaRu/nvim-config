@@ -42,7 +42,7 @@ lazy.setup({
     "catppuccin/nvim",
     name = "catppuccin",
     config = function()
-      vim.cmd.colorscheme("catppuccin-macchiato")
+      require("plugins.themes.catppuccin")
     end,
     lazy = false,
     priority = 1000

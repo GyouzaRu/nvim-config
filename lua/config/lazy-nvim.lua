@@ -23,7 +23,7 @@ end
 
 -- Only load when Linux
 local function Unload_in_windows()
-  if vim.uv.os_uname().sysname == "Linux" then
+  if vim.uv.os_uname().sysname == "Linux" or vim.uv.os_uname().sysname == "Darwin" then
     return true
   else
     return false

@@ -14,14 +14,14 @@ vim.g.maplocalleader = " "
 map("n", "<leader>R", "<Cmd>w<CR><Cmd>luafile %<CR>", opt)
 
 -- jk = <esc>
-map("i", "jk", "<Esc>", opt)
+map("i", "jj", "<Esc>", opt)
 -- 移动
-map("n", "J", "5j", opt)
-map("n", "K", "5k", opt)
+-- map("n", "J", "5j", opt)
+-- map("n", "K", "5k", opt)
 map("n", "H", "^", opt)
 map("n", "L", "$", opt)
-map("v", "J", "5j", opt)
-map("v", "K", "5k", opt)
+-- map("v", "J", "5j", opt)
+-- map("v", "K", "5k", opt)
 map("v", "H", "^", opt)
 map("v", "L", "$", opt)
 map("o", "H", "^", opt)
@@ -64,8 +64,8 @@ map("n", "<C-Up>", "<Cmd>resize -5<CR>", opt)
 map("n", "[t", "<Cmd>tabp<CR>", opt)
 map("n", "]t", "<Cmd>tabn<CR>", opt)
 -- buffer 切换
-map("n", "[b", "<Cmd>bprevious<CR>", opt)
-map("n", "]b", "<Cmd>bnext<CR>", opt)
+-- map("n", "[b", "<Cmd>bprevious<CR>", opt)
+-- map("n", "]b", "<Cmd>bnext<CR>", opt)
 -- Terminal相关
 map("t", "<Esc><Esc>", "<C-\\><C-n>", opt)
 map('n', '<C-q>', '<CMD>TermToggle<CR>')
@@ -89,8 +89,8 @@ map("n", "<leader>0p", "\"0p")
 map("v", "<leader><leader>y", "\"+y")
 map("n", "<leader><leader>p", "\"+p")
 -- quickfix
-map("n", "[q", "<Cmd>cprevious<CR>", opt)
-map("n", "]q", "<Cmd>cnext<CR>", opt)
+-- map("n", "[q", "<Cmd>cprevious<CR>", opt)
+-- map("n", "]q", "<Cmd>cnext<CR>", opt)
 
 ---- Plugins ----
 
@@ -342,15 +342,15 @@ pluginKeys.mapLSP = function(mapbuf)
   mapbuf("n", "gd", function ()
     vim.lsp.buf.definition({reuse_win = true})
   end)
-  mapbuf("n", "gh", vim.lsp.buf.hover, opt)
-  mapbuf("n", "gD", vim.lsp.buf.declaration, opt)
-  mapbuf("n", "gi", vim.lsp.buf.implementation, opt)
-  mapbuf("n", "gr", vim.lsp.buf.references, opt)
+  -- mapbuf("n", "gh", vim.lsp.buf.hover, opt)
+  -- mapbuf("n", "gD", vim.lsp.buf.declaration, opt)
+  -- mapbuf("n", "gi", vim.lsp.buf.implementation, opt)
+  -- mapbuf("n", "gr", vim.lsp.buf.references, opt)
   -- diagnostic
   mapbuf("n", "gp", vim.diagnostic.open_float, opt)
-  mapbuf("n", "[d", vim.diagnostic.goto_prev, opt)
-  mapbuf("n", "]d", vim.diagnostic.goto_next, opt)
-  mapbuf("n", "<leader>=", vim.lsp.buf.format, opt)
+  -- mapbuf("n", "[d", vim.diagnostic.goto_prev, opt)
+  -- mapbuf("n", "]d", vim.diagnostic.goto_next, opt)
+  -- mapbuf("n", "<leader>=", vim.lsp.buf.format, opt)
   mapbuf("n", "<leader>a", vim.lsp.buf.code_action, opt)
 end
 

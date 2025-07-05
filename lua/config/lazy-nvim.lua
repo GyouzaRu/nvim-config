@@ -330,6 +330,15 @@ lazy.setup({
     end,
   },
 
+  -- log highlight
+  {
+    'fei6409/log-highlight.nvim',
+    event = { 'BufNewFile', 'BufReadPre' },
+    config = function()
+        require('log-highlight').setup {}
+    end,
+  },
+
   -- Auto complete
   {
     "hrsh7th/nvim-cmp",

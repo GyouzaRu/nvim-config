@@ -25,15 +25,15 @@ local pluginAutocmd = {}
 -- )
 
 -- auto delete space at the end of line
-api.nvim_create_autocmd(
-  { "BufWritePre" },
-  { callback = function()
-    if vim.bo.filetype == "markdown" then
-      return
-    end
-    vim.cmd(':%s/\\s\\+$//e')
-  end}
-)
+-- api.nvim_create_autocmd(
+--   { "BufWritePre" },
+--   { callback = function()
+--     if vim.bo.filetype == "markdown" then
+--       return
+--     end
+--     vim.cmd(':%s/\\s\\+$//e')
+--   end}
+-- )
 
 -- different autoindent
 api.nvim_create_autocmd(

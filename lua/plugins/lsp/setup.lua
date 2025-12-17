@@ -1,8 +1,8 @@
-local lsp_status, lspconfig = pcall(require, "lspconfig")
-if not lsp_status then
-  vim.notify("没有找到 lspconfig")
-  return
-end
+-- local lsp_status, lspconfig = pcall(require, "lspconfig")
+-- if not lsp_status then
+--   vim.notify("没有找到 lspconfig")
+--   return
+-- end
 
 -- 安装列表
 -- { key: 服务器名， value: 配置文件 }
@@ -25,11 +25,13 @@ local servers = {
 
 for name, config in pairs(servers) do
   if config ~= nil and type(config) == "table" then
-    lspconfig[name].setup(config)
+    vim.lsp.config[name] = config
+    vim.lsp.enable(name)
   else
-    lspconfig[name].setup({})
+    vim.lsp.enable(name)
   end
 end
+
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),

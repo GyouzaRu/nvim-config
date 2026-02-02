@@ -32,6 +32,14 @@ local kind_icons = {
   TypeParameter = "󰅲",
 }
 
+local ELLIPSIS_CHAR = '…'
+local MAX_LABEL_WIDTH = 60
+
+cmp.setup({
+  formatting = {
+  },
+})
+
 cmp.setup({
   -- 指定 snippet 引擎
   snippet = {
@@ -70,10 +78,18 @@ cmp.setup({
   mapping = require("config.keybindings").cmp(cmp),
   formatting = {
     format = function(entry, vim_item)
-      -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      -- 截断过长的提示
+      local label = vim_item.abbr
+      local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
+      if truncated_label ~= label then
+        vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
+      end
+
+      -- 提供来源信息
       vim_item.kind = kind_icons[vim_item.kind]
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
+        supermaven = "[AI]",
         buffer = "[BUF]",
         path = "[PATH]",
         luasnip = "[SNIP]",

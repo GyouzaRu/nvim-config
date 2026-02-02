@@ -4,6 +4,34 @@ if not mason_status then
   return
 end
 
+local kind_icons = {
+  Text = "",
+  Method = "󰆧",
+  Function = "󰊕",
+  Constructor = "",
+  Field = "󰇽",
+  Variable = "󰂡",
+  Class = "󰠱",
+  Interface = "",
+  Module = "",
+  Property = "󰜢",
+  Unit = "",
+  Value = "󰎠",
+  Enum = "",
+  Keyword = "󰌋",
+  Snippet = "",
+  Color = "󰏘",
+  File = "󰈙",
+  Reference = "",
+  Folder = "󰉋",
+  EnumMember = "",
+  Constant = "󰏿",
+  Struct = "",
+  Event = "",
+  Operator = "󰆕",
+  TypeParameter = "󰅲",
+}
+
 cmp.setup({
   -- 指定 snippet 引擎
   snippet = {
@@ -23,6 +51,7 @@ cmp.setup({
   },
   -- 补全源
   sources = cmp.config.sources({
+    { name = "supermaven" },
     { name = "nvim_lsp" },
     -- For vsnip users.
     { name = "vsnip" },
@@ -39,6 +68,22 @@ cmp.setup({
 
   -- 快捷键设置
   mapping = require("config.keybindings").cmp(cmp),
+  formatting = {
+    format = function(entry, vim_item)
+      -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      vim_item.kind = kind_icons[vim_item.kind]
+      vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        buffer = "[BUF]",
+        path = "[PATH]",
+        luasnip = "[SNIP]",
+        vsnip = "[SNIP]",
+        ultisnips = "[SNIP]",
+        snippy = "[SNIP]",
+      })[entry.source.name]
+      return vim_item
+    end,
+  },
 })
 
 -- / 查找模式使用 buffer 源

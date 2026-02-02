@@ -387,6 +387,7 @@ lazy.setup({
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "ravitemer/codecompanion-history.nvim"
   },
   opts = {
     -- NOTE: The log_level is in `opts.opts`

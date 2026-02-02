@@ -313,6 +313,8 @@ pluginKeys.telescope = {
     -- map("n", "<leader>:", builtin.command_history, opt)
     -- project插件
     map("n", "<leader>p", "<cmd>Telescope projects<CR>", opt)
+    -- code-compasion 插件
+    map("n", "<leader>c", "<cmd>CodeCompanionActions<CR>", opt)
   end,
   windowKeys = {
     i = {

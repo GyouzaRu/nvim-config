@@ -378,15 +378,23 @@ lazy.setup({
     end,
   },
 
-  -- Debugger
-
-  -- {"sakhnik/nvim-gdb",
-  --     -- event = {'BufNewFile', 'BufReadPre'},
-  --     ft = {'cpp', 'c', 'sh', 'python'},
-  --     config = function()
-  --         require("plugins.nvim-gdb")
-  --     end,
-  -- },
+-- lazy.nvim
+{
+  "olimorris/codecompanion.nvim",
+  config = function()
+    require('plugins.code-companion')
+  end,
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+  },
+  opts = {
+    -- NOTE: The log_level is in `opts.opts`
+    opts = {
+      log_level = "DEBUG", -- or "TRACE"
+    },
+  },
+},
 
   -- Dap
   {

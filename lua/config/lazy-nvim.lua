@@ -379,13 +379,13 @@ lazy.setup({
     },
   },
 
-  -- fitten code
-  {
-    'luozhiya/fittencode.nvim',
-    config = function()
-      require('plugins.fitten-code')
-    end,
-  },
+  -- -- fitten code
+  -- {
+  --   'luozhiya/fittencode.nvim',
+  --   config = function()
+  --     require('plugins.fitten-code')
+  --   end,
+  -- },
 
 -- lazy.nvim
 {
@@ -405,6 +405,13 @@ lazy.setup({
     },
   },
 },
+
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require('plugins.supermaven')
+    end,
+  },
 
   -- Dap
   {

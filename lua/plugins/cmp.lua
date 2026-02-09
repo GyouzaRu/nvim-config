@@ -30,6 +30,7 @@ local kind_icons = {
   Event = "",
   Operator = "󰆕",
   TypeParameter = "󰅲",
+  Supermaven = "󱚠",
 }
 
 local ELLIPSIS_CHAR = '…'
@@ -76,6 +77,15 @@ cmp.setup({
 
   -- 快捷键设置
   mapping = require("config.keybindings").cmp(cmp),
+
+  -- 偏移menu
+  -- window = {
+  --   completion = {
+  --     winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+  --     col_offset = -3,
+  --     side_padding = 0,
+  --   },
+  -- },
   formatting = {
     format = function(entry, vim_item)
       -- 截断过长的提示
@@ -86,17 +96,17 @@ cmp.setup({
       end
 
       -- 提供来源信息
-      vim_item.kind = kind_icons[vim_item.kind]
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        supermaven = "[AI]",
-        buffer = "[BUF]",
-        path = "[PATH]",
-        luasnip = "[SNIP]",
-        vsnip = "[SNIP]",
-        ultisnips = "[SNIP]",
-        snippy = "[SNIP]",
-      })[entry.source.name]
+      vim_item.kind = string.format('%s [%s]', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+      -- vim_item.menu = ({
+      --   nvim_lsp = "[LSP]",
+      --   supermaven = "[AI]",
+      --   buffer = "[BUF]",
+      --   path = "[PATH]",
+      --   luasnip = "[SNIP]",
+      --   vsnip = "[SNIP]",
+      --   ultisnips = "[SNIP]",
+      --   snippy = "[SNIP]",
+      -- })[entry.source.name]
       return vim_item
     end,
   },

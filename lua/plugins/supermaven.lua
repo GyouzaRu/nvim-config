@@ -5,10 +5,11 @@ require("supermaven-nvim").setup({
     accept_word = "<C-Right>",
   },
   -- ignore_filetypes = { cpp = true }, -- or { "cpp", }
-  -- color = {
-  --   suggestion_color = "#ffffff",
-  --   cterm = 244,
-  -- },
+  color = {
+    -- suggestion_color = "#FFFFFF",
+    suggestion_color = "#E0E0E0",
+    cterm = 244,
+  },
   log_level = "off", -- set to "off" to disable logging completely
   disable_inline_completion = false, -- disables inline completion for use with cmp
   disable_keymaps = false, -- disables built in keymaps for more manual control

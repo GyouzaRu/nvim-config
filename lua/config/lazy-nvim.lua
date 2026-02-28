@@ -136,13 +136,22 @@ lazy.setup({
       -- necessary
       "nvim-lua/plenary.nvim", }
   },
+
   {
-    "ahmedkhalf/project.nvim",
-    event = 'VimEnter',
+    "DrKJeff16/project.nvim",
     config = function()
       require("plugins.project")
     end,
-    dependencies = { "nvim-telescope/telescope.nvim" }
+    dependencies = { -- OPTIONAL. Choose any of the following
+      {
+        'nvim-telescope/telescope.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+      },
+      -- 'wsdjeg/picker.nvim',
+      -- 'folke/snacks.nvim',
+      -- 'ibhagwan/fzf-lua',
+    },
+    opts = {},
   },
 
   -- dashboard-nvim

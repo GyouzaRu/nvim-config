@@ -247,6 +247,7 @@ lazy.setup({
     end,
   },
 
+  -- async task runner
   {
     "skywind3000/asyncrun.vim",
     event = { 'BufNewFile', 'BufReadPre' },

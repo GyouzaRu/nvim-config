@@ -189,3 +189,6 @@ vim.api.nvim_create_user_command(
 --
 -- -- 创建一个 :Cmake 命令来调用上面的函数
 -- vim.api.nvim_create_user_command('Cmake', run_cmake, { nargs = '*' })
+--
+--
+require('config.asyncrun_cmd')

@@ -256,6 +256,14 @@ lazy.setup({
     end,
   },
 
+  -- colorizer
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = { 'BufNewFile', 'BufReadPre' },
+    config = function()
+      require 'colorizer'.setup()
+    end,
+  },
   -- view symbols based on LSP
   -- {
   --   "simrat39/symbols-outline.nvim",

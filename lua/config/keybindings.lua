@@ -297,6 +297,40 @@ pluginKeys.dap = {
   end
 }
 
+-- fzf-lua
+pluginKeys.fzf_lua = {
+  functionKeys = function()
+    -- 查找文件
+    map("n", "<leader>f", "<cmd>FzfLua files<CR>", opt) -- TODO: drop
+    -- 全局搜索
+    map("n", "<leader>g", "<cmd>FzfLua live_grep<CR>", opt)
+    map("n", "<leader>b", "<cmd>FzfLua buffers<CR>", opt)
+    map("n", "<leader>o", "<cmd>FzfLua oldfiles<CR>", opt)
+    -- map("n", "sh", "<Cmd>Telescope help_tags<CR>", opt)
+    -- map("n", "st", "<Cmd>Telescope tags<CR>", opt)
+    map("n", "<leader>q", "<cmd>FzfLua quickfix_stack<CR>", opt)
+    -- map("n", "<leader>/", builtin.search_history, opt)
+    -- map("n", "<leader>:", builtin.command_history, opt)
+    -- project插件
+    map("n", "<leader>p", "<cmd>lua require('project').run_fzf_lua()<CR>", opt)
+  end,
+  builtinKeys = function(plugin)
+    local keys = {}
+    keys.builtin = {
+      ["<C-d>"]      = "preview-page-down",
+      ["<C-u>"]      = "preview-page-up",
+    }
+    keys.fzf = {
+      ["ctrl-d"]     = "preview-page-down",
+      ["ctrl-u"]     = "preview-page-up",
+    }
+    keys.actions = {
+      ["ctrl-x"] = plugin.actions.file_split,
+    }
+    return keys
+  end
+}
+
 -- Telescope
 pluginKeys.telescope = {
   functionKeys = function(builtin)

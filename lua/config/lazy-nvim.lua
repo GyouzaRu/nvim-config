@@ -125,17 +125,35 @@ lazy.setup({
     },
   },
 
-  -- telescope
+  -- fzf-lua
   {
-    "nvim-telescope/telescope.nvim",
+    "ibhagwan/fzf-lua",
     event = 'VimEnter',
     config = function()
-      require("plugins.telescope")
+      require("plugins.nvim-fzf-lua")
     end,
-    dependencies = {
-      -- necessary
-      "nvim-lua/plenary.nvim", }
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- or if using mini.icons/mini.nvim
+    -- dependencies = { "nvim-mini/mini.icons" },
+    ---@module "fzf-lua"
+    ---@type fzf-lua.Config|{}
+    ---@diagnostic disable: missing-fields
+    opts = {}
+    ---@diagnostic enable: missing-fields
   },
+
+  -- -- telescope
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   event = 'VimEnter',
+  --   config = function()
+  --     require("plugins.telescope")
+  --   end,
+  --   dependencies = {
+  --     -- necessary
+  --     "nvim-lua/plenary.nvim", }
+  -- },
 
   {
     "DrKJeff16/project.nvim",

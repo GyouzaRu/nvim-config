@@ -4,7 +4,11 @@ if not status then
   return
 end
 
-minifiles.setup({})
+local keymap = require('config.keybindings').minifiles
+keymap.functionKeys(minifiles);
 
-require('config.keybindings').minifiles()
-require('config.autocmds').minifiles()
+-- local autocmd = require('config.autocmds').minifiles
+
+minifiles.setup({
+  mappings = keymap.builtinKeys,
+})

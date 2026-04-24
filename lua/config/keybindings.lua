@@ -220,9 +220,32 @@ map("n", "<leader><leader>p", "\"+p")
 -- }
 
 -- Mini Files
-pluginKeys.minifiles = function ()
-    map('n', '<leader>n', '<Cmd>lua MiniFiles.open()<CR>',opt)
-end
+pluginKeys.minifiles = {
+  functionKeys = function(plugin)
+    local function OpenFile()
+      local _ = plugin.close()
+          or plugin.open(vim.api.nvim_buf_get_name(0), false)
+      plugin.reveal_cwd()
+    end
+    map('n', '<leader>n', OpenFile, opt)
+  end,
+
+  builtinKeys = {
+    close       = 'q',
+    go_in       = 'L',
+    go_in_plus  = '[',
+    go_out      = 'H',
+    go_out_plus = ']',
+    mark_goto   = "'",
+    mark_set    = 'm',
+    reset       = '<BS>',
+    reveal_cwd  = '@',
+    show_help   = 'g?',
+    synchronize = '=',
+    trim_left   = '<',
+    trim_right  = '>',
+  }
+}
 
 -- Float terminal
 -- pluginKeys.FTerm = {
